@@ -1,0 +1,9 @@
+*.swp
+.DS_Store
+.forever/
+.tmp/
+coverage
+lib/
+node_modules
+npm-debug.log
+

@@ -1,0 +1,29 @@
+{
+  "name": "tic-tac-toe",
+  "version": "0.0.1",
+  "description": "ML tic-tac-toe player",
+  "main": "src/ts/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxgurewitz/tic-tac-toe.git"
+  },
+  "keywords": [
+    "tic-tac-toe",
+    "tic",
+    "tac",
+    "toe",
+    "ML",
+    "machine",
+    "learning",
+    "reinforcement"
+  ],
+  "author": "Max Gurewitz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxgurewitz/tic-tac-toe/issues"
+  },
+  "homepage": "https://github.com/maxgurewitz/tic-tac-toe#readme"
+}
