@@ -4,7 +4,8 @@
   "description": "ML tic-tac-toe player",
   "main": "src/ts/index.ts",
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack webpack.config.js",
+    "start": "webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
