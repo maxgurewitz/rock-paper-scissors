@@ -1,9 +1,10 @@
 {
-  "files": ["src/ts/index.ts"],
+  "files": ["src/ts/index.tsx"],
   "compilerOptions": {
     "outDir": "./dist/",
     "strictNullChecks": true,
     "noImplicitAny": true,
+    "moduleResolution": "node",
     "sourceMap": true,
     "module": "es6",
     "target": "es5",

@@ -1,17 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/ts/index.ts',
+  entry: './src/ts/index.tsx',
   devtool: 'inline-source-map',
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
-        exclude: /node_modules/,
-        options: {
-          configFile: ".tsconfig.json"
-        }
+        exclude: /node_modules/
       }
     ]
   },

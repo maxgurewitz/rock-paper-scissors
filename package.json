@@ -2,7 +2,7 @@
   "name": "tic-tac-toe",
   "version": "0.0.1",
   "description": "ML tic-tac-toe player",
-  "main": "src/ts/index.ts",
+  "main": "src/ts/index.tsx",
   "scripts": {
     "build": "webpack webpack.config.js",
     "start": "webpack-dev-server --open"
@@ -28,9 +28,17 @@
   },
   "homepage": "https://github.com/maxgurewitz/tic-tac-toe#readme",
   "devDependencies": {
+    "@types/react": "^16.0.25",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.13",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
     "ts-loader": "^3.1.1",
     "typescript": "^2.6.1",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
-  }
+  },
+  "dependencies": {}
 }
