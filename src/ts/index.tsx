@@ -28,12 +28,17 @@ enum Hand {
 const initialState: State = {
   userSelection: null,
   aiSelection: Hand.Paper,
+  retrievalInProgress: false,
   playRecord: null
+
 };
 
+function mod(n : number, m : number) : number {
+  return ((n % m) + m) % m;
+}
+
 function firstHandBeatsSecond(hand1: Hand, hand2: Hand): Boolean {
-  const diff = hand1 - hand2;
-  return diff === -1 || diff == 2;
+  return mod(hand1 - hand2, 3) == 2;
 }
 
 const update = (oldState: State, msg: Msg): State => {
@@ -44,16 +49,27 @@ const update = (oldState: State, msg: Msg): State => {
       if (state.aiSelection !== null) {
         state.userSelection = msg.hand;
 
-        const winBit = Number(firstHandBeatsSecond(msg.hand, state.aiSelection));
+        const winBit = Number(firstHandBeatsSecond(state.aiSelection, msg.hand));
 
-        state.playRecord = state.playRecord ? {
-          gamesPlayed: state.playRecord.gamesPlayed + 1,
-          aiWinPercentage: ((state.playRecord.aiWinPercentage * state.playRecord.gamesPlayed) + winBit) / (state.playRecord.gamesPlayed + 1)
-        } : {
+        state.retrievalInProgress = true;
+
+        let playRecord;
+
+        if (state.playRecord) {
+          const {aiWinPercentage, gamesPlayed} = state.playRecord;
+          playRecord =  {
+            gamesPlayed: gamesPlayed + 1,
+            aiWinPercentage: ((aiWinPercentage * gamesPlayed) + winBit) / (gamesPlayed + 1)
+          };
+
+        } else {
+          playRecord = {
             gamesPlayed: 1,
             aiWinPercentage: winBit
-          };
-        console.log('loc1')
+          }
+        }
+
+        state.playRecord = playRecord;
       }
 
       return state;
@@ -72,6 +88,7 @@ interface State {
     aiWinPercentage: number
     gamesPlayed: number
   },
+  retrievalInProgress:  boolean,
   aiSelection: Hand | null,
 }
 
@@ -84,10 +101,10 @@ interface View {
 const view: View = ({ state, actions }) =>
   (<div>
     <div> selected {state.userSelection} </div>
-    <div> win percentage {get(state, 'playRecord.aiWinPercentage')} </div>
-    <button onClick={() => actions.selectHand(Hand.Rock)}> Rock </button>
-    <button onClick={() => actions.selectHand(Hand.Paper)}> Paper </button>
-    <button onClick={() => actions.selectHand(Hand.Scissors)}> Scissors </button>
+    <div> ai win percentage {get(state, 'playRecord.aiWinPercentage')} </div>
+    <button disabled={state.retrievalInProgress} onClick={() => actions.selectHand(Hand.Rock)}> Rock </button>
+    <button disabled={state.retrievalInProgress} onClick={() => actions.selectHand(Hand.Paper)}> Paper </button>
+    <button disabled={state.retrievalInProgress} onClick={() => actions.selectHand(Hand.Scissors)}> Scissors </button>
   </div>);
 
 interface Actions {
