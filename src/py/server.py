@@ -3,9 +3,8 @@ import json
 import aiohttp_cors
 
 async def handle(request):
-    body = { 'hand': 1 }
-    headers = { 'Content-Type': 'application/javascript' }
-    return web.Response(text=json.dumps(body), headers=headers)
+    body = { 'hand': 2 }
+    return web.json_response(body)
 
 app = web.Application()
 

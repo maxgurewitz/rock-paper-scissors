@@ -1,21 +1,22 @@
 {
-  "name": "tic-tac-toe",
+  "name": "rock-paper-scissors",
   "version": "0.0.1",
-  "description": "ML tic-tac-toe player",
+  "description": "ML rock-paper-scissors player",
   "main": "src/ts/index.tsx",
   "scripts": {
     "build": "webpack webpack.config.js",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "start-server": "nodemon --exec 'python3' src/py/server.py"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/maxgurewitz/tic-tac-toe.git"
   },
   "keywords": [
-    "tic-tac-toe",
-    "tic",
-    "tac",
-    "toe",
+    "rock-paper-scissors",
+    "rock",
+    "paper",
+    "scissors",
     "ML",
     "machine",
     "learning",
@@ -34,6 +35,7 @@
     "@types/react-redux": "^5.0.13",
     "axios": "^0.17.1",
     "lodash": "^4.17.4",
+    "nodemon": "^1.12.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
