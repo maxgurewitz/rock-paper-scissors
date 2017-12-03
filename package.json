@@ -5,8 +5,9 @@
   "main": "src/ts/index.tsx",
   "scripts": {
     "build": "webpack webpack.config.js",
-    "start": "webpack-dev-server --open",
-    "start-server": "nodemon --exec 'python3' src/py/server.py"
+    "start": "run-p watch:*",
+    "watch:server": "nodemon --exec 'python3' src/py/server.py",
+    "watch:client": "webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "axios": "^0.17.1",
     "lodash": "^4.17.4",
     "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
