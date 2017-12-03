@@ -2,6 +2,7 @@ import * as React from 'react'
 import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
 import { get, clone } from 'lodash';
+import axios from 'axios';
 import { createStore } from 'redux'
 
 interface NoOp {
@@ -13,11 +14,16 @@ interface SelectHand {
   hand: Hand
 }
 
+interface AiSelectHand {
+  type: 'aiSelectHand',
+  hand: Hand
+}
+
 interface Init {
   type: '@@redux/INIT'
 }
 
-type Msg = NoOp | SelectHand | Init;
+type Msg = NoOp | SelectHand | AiSelectHand | Init;
 
 enum Hand {
   Paper,
@@ -45,6 +51,9 @@ const update = (oldState: State, msg: Msg): State => {
   const state = clone(oldState);
 
   switch (msg.type) {
+    case 'aiSelectHand':
+      return state;
+
     case 'selectHand':
       if (state.aiSelection !== null) {
         state.userSelection = msg.hand;
@@ -121,6 +130,13 @@ const actions: Actions = {
       type: 'selectHand',
       hand
     });
+
+    axios.get(`/get-hand?user-hand=${hand}`)
+      .then(response => dispatch({ type: 'aiSelectHand', hand: JSON.parse(response.data).hand }))
+      .catch(err => {
+        console.log('loc1', err);
+
+      });
   }
 };
 
