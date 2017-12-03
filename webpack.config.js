@@ -16,7 +16,10 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ]
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   },
   output: {
     filename: 'bundle.js',

@@ -132,7 +132,7 @@ const actions: Actions = {
       hand
     });
 
-    axios.get(`/get-hand?userHand=${hand}`)
+    axios.get(`/api/get-hand?userHand=${hand}`)
       .then(response => dispatch({ type: 'aiSelectHand', hand: JSON.parse(response.data).hand }))
       .catch(err => {
         console.log('loc1', err);
