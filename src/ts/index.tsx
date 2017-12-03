@@ -66,6 +66,7 @@ const update = (oldState: State, msg: Msg): State => {
 
         if (state.playRecord) {
           const {aiWinPercentage, gamesPlayed} = state.playRecord;
+
           playRecord =  {
             gamesPlayed: gamesPlayed + 1,
             aiWinPercentage: ((aiWinPercentage * gamesPlayed) + winBit) / (gamesPlayed + 1)
@@ -131,7 +132,7 @@ const actions: Actions = {
       hand
     });
 
-    axios.get(`/get-hand?user-hand=${hand}`)
+    axios.get(`/get-hand?userHand=${hand}`)
       .then(response => dispatch({ type: 'aiSelectHand', hand: JSON.parse(response.data).hand }))
       .catch(err => {
         console.log('loc1', err);
