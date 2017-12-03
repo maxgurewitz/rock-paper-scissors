@@ -52,6 +52,8 @@ const update = (oldState: State, msg: Msg): State => {
 
   switch (msg.type) {
     case 'aiSelectHand':
+      state.retrievalInProgress = false;
+      state.aiSelection = msg.hand;
       return state;
 
     case 'selectHand':
@@ -133,10 +135,9 @@ const actions: Actions = {
     });
 
     axios.get(`/api/get-hand?userHand=${hand}`)
-      .then(response => dispatch({ type: 'aiSelectHand', hand: JSON.parse(response.data).hand }))
+      .then(response => dispatch({ type: 'aiSelectHand', hand: response.data.hand }))
       .catch(err => {
-        console.log('loc1', err);
-
+        console.error('failed to retrieve next ai selection', err);
       });
   }
 };
